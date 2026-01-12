@@ -46,7 +46,7 @@ expression_parser/
 │   └── exceptions.py          # Custom errors
 ├── config/
 │   ├── config.json            # Plot config (x vs y)
-│   └── sample_config.json     # Simple single-series config
+│   └── sample_config.json     # Sample single-series config
 ├── demo/
 │   └── demo_plot.py           # CLI demo with plotting
 └── tests/
@@ -76,7 +76,7 @@ python demo/demo_plot.py --data sales.csv --config my_analysis.json
 
 ## 📊 Config Formats
 
-### Simple Format
+### Sample config 1
 For single-series evaluation and testing:
 
 ```json
@@ -89,7 +89,7 @@ For single-series evaluation and testing:
 }
 ```
 
-### Plot Format
+### Sample config 2
 For x vs y visualization:
 
 ```json
@@ -199,6 +199,59 @@ BINARY_OPERATORS = {
     "left": "param2",
     "right": "param3"
   }
+}
+```
+
+### 🔍 Adding New Filter Operators
+
+**Example: Add >= and != filters**
+
+1. **Update `filters.py`:**
+```python
+# Add to FILTER_OPERATORS dict
+FILTER_OPERATORS: Dict[str, Callable] = {
+    ">": lambda col, val: col > val,
+    "<": lambda col, val: col < val,
+    "==": lambda col, val: col == val,
+    ">=": lambda col, val: col >= val,   # NEW
+    "<=": lambda col, val: col <= val,   # NEW
+    "!=": lambda col, val: col != val,   # NEW
+}
+```
+
+2. **Usage:**
+```json
+{
+  "select": "param2",
+  "filter": [
+    {"column": "time", "op": ">=", "value": 5},
+    {"column": "param1", "op": "!=", "value": 0}
+  ]
+}
+```
+
+### 📊 Adding New Aggregation Functions
+
+**Example: Add max, min, and median**
+
+1. **Update aggregations.py:**
+```python
+# Add to AGGREGATION_FUNCTIONS dict
+AGGREGATION_FUNCTIONS: Dict[str, str] = {
+    "mean": "mean",
+    "sum": "sum",
+    "max": "max",      # NEW
+    "min": "min",      # NEW
+    "median": "median", # NEW
+}
+```
+
+2. **Usage:**
+```json
+{
+  "select": "param2",
+  "group_by": "param1",
+  "aggregate": {"func": "max"}
 }
 ```
 
