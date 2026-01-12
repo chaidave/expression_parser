@@ -66,13 +66,12 @@ python demo/demo_plot.py
 
 # Specify data source
 python demo/demo_plot.py --data synthetic
-python demo/demo_plot.py --data data/business_sales.csv
 
 # Specify config
-python demo/demo_plot.py --config config/sales_analysis.json
+python demo/demo_plot.py --config config/config.json
 
 # Combine options
-python demo/demo_plot.py --data data/busisness_sales.csv --config config/sales_analysis.json
+python demo/demo_plot.py --data data/business_sales.csv --config data/sales_analysis.json
 ```
 
 ---
@@ -298,7 +297,7 @@ python -m pytest tests/ --cov=expression_parser
 
 ## 📊 Sample Data Visualization using business data
 
-Real-time business sales data used to test the current workflow
+Sample business sales data used to test the current workflow
 
 JSON configuration:
 
