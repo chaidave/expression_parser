@@ -16,7 +16,7 @@ class ConfigValidationError(Exception):
     pass
 
 
-def validate_config(config: Dict[str, Any], df_columns: List[str]) -> None:i
+def validate_config(config: Dict[str, Any], df_columns: List[str]) -> None:
     """
     Validate expression config structure and references.
     Checks: required keys, column existence, operator support, aggregation rules.

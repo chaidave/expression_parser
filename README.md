@@ -23,7 +23,7 @@ pip install -e .
 python demo/demo_plot.py
 
 # Run with CSV file
-python demo/demo_plot.py --data mydata.csv --config config/config.json
+python demo/demo_plot.py --data data/business_sales.csv --config data/sales_analysis.json
 
 # Run tests
 python -m pytest tests/
