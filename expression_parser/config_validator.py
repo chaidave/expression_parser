@@ -1,5 +1,6 @@
 """
-Module to validate configuration dictionaries for data expression parsing
+Module to validate configuration dictionaries for data expression parsing.
+Validates configs before execution to catch errors early with clear messages.
 """
 
 from typing import Dict, Any, List
@@ -11,10 +12,15 @@ from expression_parser.aggregations import AGGREGATION_FUNCTIONS
 
 
 class ConfigValidationError(Exception):
+    # Raised when config validation fails (invalid structure or unsupported operations).
     pass
 
 
-def validate_config(config: Dict[str, Any], df_columns: List[str]) -> None:
+def validate_config(config: Dict[str, Any], df_columns: List[str]) -> None:i
+    """
+    Validate expression config structure and references.
+    Checks: required keys, column existence, operator support, aggregation rules.
+    """
     # Check that config is not empty
     if not config:
         raise ConfigValidationError("Config cannot be empty")
@@ -50,6 +56,10 @@ def validate_config(config: Dict[str, Any], df_columns: List[str]) -> None:
 
 
 def validate_plot_config(config: Dict[str, Any], df_columns: List[str]) -> None:
+    """
+    Validate plot config. Rejects bare literals (plotting constant is meaningless).
+    Supports: {"select": ...} or {"x-values": {...}, "y-values": {...}}
+    """
     # Check for simple format
     if "select" in config:
         # Validate that select is not a bare literal (meaningless for plotting)

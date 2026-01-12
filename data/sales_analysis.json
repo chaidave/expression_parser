@@ -1,0 +1,13 @@
+{
+  "filter": [
+    {"column": "region", "op": "==", "value": "South"},
+    {"column": "year", "op": ">", "value": 2019}
+  ],
+  "x-values": {
+    "select": "year"
+  },
+  "y-values": {
+    "select": "sales_revenue",
+    "name": "Sales Revenue"
+  }
+}

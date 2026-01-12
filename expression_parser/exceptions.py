@@ -1,5 +1,5 @@
 """
-Exceptions for the expression parser module.
+Custom Exceptions for the expression parser module.
 """
 
 class ExpressionParserError(Exception):

@@ -1,5 +1,5 @@
 """
-Main module for parsing and evaluating expressions against a Pandas DataFrame.
+Main module - validates config, applies filters, evaluates expressions, and handles aggregations
 """
 
 import pandas as pd
@@ -11,12 +11,20 @@ from expression_parser.config_validator import validate_config, validate_plot_co
 
 
 class ExpressionParser:
-    #Main entry point for evaluating expressions against a Pandas DataFrame.
-
+    """
+    Main entry point for expression evaluation.
+    Takes JSON configs and evaluates them against a DataFrame.
+    """
     def __init__(self, dataframe: pd.DataFrame):
+        # Initialize with a DataFrame. Creates internal copy to avoid side effects.
         self.df = dataframe.copy()
 
     def evaluate(self, config: dict):
+        """
+        Evaluate expression config against DataFrame.
+        Pipeline: validate -> filter -> parse -> evaluate -> aggregate
+        Returns: pd.Series with computed results
+        """
         # Validate config before processing
         validate_config(config, list(self.df.columns))
 
@@ -40,6 +48,12 @@ class ExpressionParser:
         return series
 
     def evaluate_plot_config(self, config: dict):
+        """
+        Evaluate config for plotting. Supports two formats:
+        1. Simple: {"select": expr} -> generates indexed x-axis
+        2. Plot: {"x-values": {...}, "y-values": {...}} -> explicit axes
+        Returns: (x_series, y_series, x_label, y_label)
+        """
         # Validate plot config (rejects bare literals)
         validate_plot_config(config, list(self.df.columns))
         

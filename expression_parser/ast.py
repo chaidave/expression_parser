@@ -1,5 +1,6 @@
 """
 AST node definitions for a simple expression parser.
+Tree structure representing parsed expressions.
 """
 
 from abc import ABC, abstractmethod
@@ -15,6 +16,7 @@ class ASTNode(ABC):
 
 
 class ColumnRefNode(ASTNode):
+    # Reference to DataFrame column. Evaluates to pd.Series.
     def __init__(self, column: str):
         self.column = column
 
@@ -23,6 +25,7 @@ class ColumnRefNode(ASTNode):
 
 
 class LiteralNode(ASTNode):
+    # Numeric constant value. Evaluates to scalar.
     def __init__(self, value: Union[int, float]):
         self.value = value
 
@@ -31,6 +34,7 @@ class LiteralNode(ASTNode):
 
 
 class BinaryOpNode(ASTNode):
+    # Binary operation (e.g., +, -) between two sub-expressions.
     def __init__(self, op: str, left: ASTNode, right: ASTNode):
         self.op = op
         self.left = left
@@ -41,6 +45,7 @@ class BinaryOpNode(ASTNode):
 
 
 class FunctionNode(ASTNode):
+    # Function call with single argument. (Placeholder - not yet implemented)
     def __init__(self, name: str, arg: ASTNode):
         self.name = name
         self.arg = arg

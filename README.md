@@ -49,8 +49,11 @@ expression_parser/
 │   └── sample_config.json     # Sample single-series config
 ├── demo/
 │   └── demo_plot.py           # CLI demo with plotting
-└── tests/
-    └── test_parser.py         # Comprehensive test suite
+├── tests/
+│    └── test_parser.py        # Comprehensive test suite
+└── Data/
+    ├── business_sales.csv     # Real time business sales data
+    └── sales_analysis.json    # JSON config for business sales analysis
 ```
 
 ---
@@ -63,13 +66,13 @@ python demo/demo_plot.py
 
 # Specify data source
 python demo/demo_plot.py --data synthetic
-python demo/demo_plot.py --data mydata.csv
+python demo/demo_plot.py --data data/business_sales.csv
 
 # Specify config
-python demo/demo_plot.py --config config/simple_config.json
+python demo/demo_plot.py --config config/sales_analysis.json
 
 # Combine options
-python demo/demo_plot.py --data sales.csv --config my_analysis.json
+python demo/demo_plot.py --data data/busisness_sales.csv --config config/sales_analysis.json
 ```
 
 ---
@@ -107,6 +110,28 @@ For x vs y visualization:
       "right": "param3"
     },
     "name": "result"
+  }
+}
+```
+
+**Note:** Column name like param1, param2, and param3 are generic names used for current use case. User can use custom parameter name in json config.
+
+###Example:
+
+In below example parameter name like `year`, `region`, `sales_revenue` are used in json config.
+
+```json
+{
+  "filter": [
+    {"column": "region", "op": "==", "value": "South"},
+    {"column": "year", "op": ">", "value": 2019}
+  ],
+  "x-values": {
+    "select": "year"
+  },
+  "y-values": {
+    "select": "sales_revenue",
+    "name": "Sales Revenue"
   }
 }
 ```
@@ -269,6 +294,34 @@ python -m pytest tests/test_parser.py::TestExpressionParser::test_column_selecti
 # Run with coverage
 python -m pytest tests/ --cov=expression_parser
 ```
+
+---
+
+## 📊 Sample Data Visualization using business data
+
+Real-time business sales data used to test the current workflow
+
+JSON configuration:
+
+```json
+{
+  "filter": [
+    {"column": "region", "op": "==", "value": "South"},
+    {"column": "year", "op": ">", "value": 2019}
+  ],
+  "x-values": {
+    "select": "year"
+  },
+  "y-values": {
+    "select": "sales_revenue",
+    "name": "Sales Revenue"
+  }
+}
+```
+
+Plot Generated using above query:
+
+
 
 ---
 
