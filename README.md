@@ -55,17 +55,6 @@ expression_parser/
 
 ---
 
-## 🎯 Supported Operations
-
-- ✅ **Config-driven** - Define queries in JSON
-- ✅ **AST-based** - Clean separation of parsing & evaluation
-- ✅ **Extensible** - Registry pattern for operators, filters, aggregations
-- ✅ **Type-safe** - Comprehensive validation
-- ✅ **Flexible data sources** - Synthetic, CSV, database (planned)
-- ✅ **Two config formats** - Simple & plot formats
-
----
-
 ## 🖥️  CLI Usage
 
 ```bash
