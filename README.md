@@ -116,8 +116,7 @@ For x vs y visualization:
 
 **Note:** Column name like param1, param2, and param3 are generic names used for current use case. User can use custom parameter name in json config.
 
-###Example:
-
+### Example:
 In below example parameter name like `year`, `region`, `sales_revenue` are used in json config.
 
 ```json

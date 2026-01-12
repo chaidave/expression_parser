@@ -4,7 +4,8 @@
     {"column": "year", "op": ">", "value": 2019}
   ],
   "x-values": {
-    "select": "year"
+    "select": "year",
+    "name": "Year"
   },
   "y-values": {
     "select": "sales_revenue",
