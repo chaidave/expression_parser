@@ -234,7 +234,7 @@ FILTER_OPERATORS: Dict[str, Callable] = {
 
 **Example: Add max, min, and median**
 
-1. **Update aggregations.py:**
+1. **Update `aggregations.py`:**
 ```python
 # Add to AGGREGATION_FUNCTIONS dict
 AGGREGATION_FUNCTIONS: Dict[str, str] = {
