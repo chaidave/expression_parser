@@ -4,11 +4,20 @@ A flexible, config-driven expression parser for Pandas DataFrames. Define data t
 
 ---
 
-## 🚀 Quick Start
+## ⚙️  Setup Instructions
 
 ```bash
+
+# Create and activate a virtual environment
+
+python -m venv venv
+source venv/bin/activate   # macOS/Linux
+
 # Install dependencies
 pip install -r requirements.txt
+
+# Install the package in editable mode (recommended)
+pip install -e .
 
 # Run demo with synthetic data
 python demo/demo_plot.py
