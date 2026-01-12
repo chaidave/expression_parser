@@ -8,7 +8,7 @@ A flexible, config-driven expression parser for Pandas DataFrames. Define data t
 
 ```bash
 
-# Create and activate a virtual environment
+# Create a virtual environment and activate it
 
 python -m venv venv
 source venv/bin/activate   # macOS/Linux
@@ -46,7 +46,7 @@ expression_parser/
 │   └── exceptions.py          # Custom errors
 ├── config/
 │   ├── config.json            # Plot config (x vs y)
-│   └── simple_config.json     # Simple single-series config
+│   └── sample_config.json     # Simple single-series config
 ├── demo/
 │   └── demo_plot.py           # CLI demo with plotting
 └── tests/
@@ -55,7 +55,7 @@ expression_parser/
 
 ---
 
-## 🎯 Features
+## 🎯 Supported Operations
 
 - ✅ **Config-driven** - Define queries in JSON
 - ✅ **AST-based** - Clean separation of parsing & evaluation
@@ -63,6 +63,25 @@ expression_parser/
 - ✅ **Type-safe** - Comprehensive validation
 - ✅ **Flexible data sources** - Synthetic, CSV, database (planned)
 - ✅ **Two config formats** - Simple & plot formats
+
+---
+
+## 🖥️  CLI Usage
+
+```bash
+# Default (synthetic data + config/config.json)
+python demo/demo_plot.py
+
+# Specify data source
+python demo/demo_plot.py --data synthetic
+python demo/demo_plot.py --data mydata.csv
+
+# Specify config
+python demo/demo_plot.py --config config/simple_config.json
+
+# Combine options
+python demo/demo_plot.py --data sales.csv --config my_analysis.json
+```
 
 ---
 
@@ -77,7 +96,7 @@ For single-series evaluation and testing:
   "filter": [
     { "column": "time", "op": ">", "value": 2 }
   ],
-  "name": "My Data"
+  "name": "result"
 }
 ```
 
@@ -103,18 +122,7 @@ For x vs y visualization:
 }
 ```
 
-### With Aggregations
-
-```json
-{
-  "select": "param2",
-  "filter": [
-    { "column": "time", "op": ">", "value": 2 }
-  ],
-  "group_by": "param1",
-  "aggregate": { "func": "mean" }
-}
-```
+For more config review config directory
 
 ---
 
@@ -137,28 +145,6 @@ For x vs y visualization:
 - Column references: `"param2"`
 - Literals: `42`, `3.14`
 - Binary operations: `{"op": "+", "left": "param2", "right": "param3"}`
-
----
-
-## 🖥️ CLI Usage
-
-```bash
-# Default (synthetic data + config/config.json)
-python demo/demo_plot.py
-
-# Specify data source
-python demo/demo_plot.py --data synthetic
-python demo/demo_plot.py --data mydata.csv
-
-# Specify config
-python demo/demo_plot.py --config config/simple_config.json
-
-# Combine options
-python demo/demo_plot.py --data sales.csv --config my_analysis.json
-
-# Database info (planned feature)
-python demo/demo_plot.py --data database
-```
 
 ---
 
@@ -188,45 +174,6 @@ plot_config = {
     "y-values": {"select": "param2"}
 }
 x, y, x_name, y_name = parser.evaluate_plot_config(plot_config)
-```
-
----
-
-## 🧩 Architecture
-
-### AST-Based Evaluation
-```
-JSON Config → Parser → AST Nodes → Evaluator → Results
-```
-
-**AST Nodes:**
-- `ColumnRefNode` - Column references
-- `LiteralNode` - Numeric literals
-- `BinaryOpNode` - Binary operations (+, -)
-- `FunctionNode` - Functions (reserved for future)
-
-### Registry Pattern
-Easy to extend with new operations:
-
-```python
-# In evaluator.py
-BINARY_OPERATORS = {
-    "+": lambda left, right: left + right,
-    "-": lambda left, right: left - right,
-    "*": lambda left, right: left * right,  # Add new operator
-}
-
-# In filters.py
-FILTER_OPERATORS = {
-    ">": lambda col, val: col > val,
-    "!=": lambda col, val: col != val,  # Add new filter
-}
-
-# In aggregations.py
-AGGREGATION_FUNCTIONS = {
-    "mean": "mean",
-    "max": "max",  # Add new aggregation
-}
 ```
 
 ---
@@ -266,6 +213,8 @@ BINARY_OPERATORS = {
 }
 ```
 
+---
+
 ## 🧪 Testing
 
 ```bash
@@ -278,19 +227,6 @@ python -m pytest tests/test_parser.py::TestExpressionParser::test_column_selecti
 # Run with coverage
 python -m pytest tests/ --cov=expression_parser
 ```
-
----
-
-## 📝 Example Dataset
-
-The demo uses synthetic time-series data:
-
-| Column  | Type       | Description               |
-|---------|------------|---------------------------|
-| time    | int        | Sequential time steps     |
-| param1  | int        | Grouping variable (0-9)   |
-| param2  | int        | Discrete values (0-8)     |
-| param3  | float      | Continuous values (0-1)   |
 
 ---
 
