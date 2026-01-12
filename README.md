@@ -97,26 +97,19 @@ For x vs y visualization:
 
 ```json
 {
-    "x-values": {
-      "select": "time",
-      "name": "Time",
-      "filter": [
-        { "column": "time", "op": ">", "value": 2 }
-      ]
-    },
-    "y-values": {
-      "select": {
-        "op": "+",
-        "left": "param2",
-        "right": "param3"
-      },
-      "filter": [
-        { "column": "time", "op": ">", "value": 2 }
-      ],
-      "group_by": "param1",
-      "aggregate": { "func": "mean" },
-      "name": "Mean"
+  "filter": [
+    { "column": "time", "op": ">", "value": 2 }
+  ],
+  "x-values": {
+    "select": "time"
+  },
+  "y-values": {
+    "select": {
+      "op": "+",
+      "left": "param2",
+      "right": "param3"
     }
+  }
 }
 ```
 
