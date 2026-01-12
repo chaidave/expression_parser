@@ -1,0 +1,14 @@
+{
+  "plots": [
+    {
+      "select": "param2",
+      "group_by": "param1",
+      "aggregate": {"func": "sum"}
+    },
+    {
+      "select": "param3",
+      "group_by": "param1",
+      "aggregate": {"func": "sum"}
+    }    
+  ]
+}

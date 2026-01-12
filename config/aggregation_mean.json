@@ -1,0 +1,6 @@
+{
+  "select": "param2",
+  "group_by": "param1",
+  "aggregate": {"func": "mean"}
+}
+

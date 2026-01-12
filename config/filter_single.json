@@ -1,0 +1,7 @@
+{
+  "select": "param2",
+  "filter": [
+    {"column": "time", "op": ">", "value": 5}
+  ]
+}
+

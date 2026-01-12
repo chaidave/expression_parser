@@ -1,0 +1,15 @@
+{
+  "filter": [
+    { "column": "time", "op": ">", "value": 2 }
+  ],
+  "x-values": {
+    "select": "time"
+  },
+  "y-values": {
+    "select": {
+      "op": "+",
+      "left": "param2",
+      "right": "param3"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+
+# Packaging artifacts
+*.egg-info/
+build/
+dist/
+
+# Testing
+.pytest_cache/
+
+# OS files
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
