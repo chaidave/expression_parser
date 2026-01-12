@@ -127,7 +127,8 @@ In below example parameter name like `year`, `region`, `sales_revenue` are used 
     {"column": "year", "op": ">", "value": 2019}
   ],
   "x-values": {
-    "select": "year"
+    "select": "year",
+    "name": "Year"
   },
   "y-values": {
     "select": "sales_revenue",
@@ -310,7 +311,8 @@ JSON configuration:
     {"column": "year", "op": ">", "value": 2019}
   ],
   "x-values": {
-    "select": "year"
+    "select": "year",
+    "name": "Year"
   },
   "y-values": {
     "select": "sales_revenue",
@@ -321,7 +323,7 @@ JSON configuration:
 
 Plot Generated using above query:
 
-
+<img width="1076" height="758" alt="image" src="https://github.com/user-attachments/assets/adeb4312-c7cc-41ba-941a-53fdfbeb623f" />
 
 ---
 
