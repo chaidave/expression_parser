@@ -1,3 +1,7 @@
+"""
+Main module for parsing and evaluating expressions against a Pandas DataFrame.
+"""
+
 import pandas as pd
 from expression_parser.filters import apply_filters
 from expression_parser.expression_builder import parse_expression

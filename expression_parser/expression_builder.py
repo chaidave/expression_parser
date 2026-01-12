@@ -1,3 +1,7 @@
+"""
+This module provides functionality to parse and build an AST from expressions.
+"""
+
 from expression_parser.exceptions import UnsupportedOperatorError
 from expression_parser.ast import ColumnRefNode, LiteralNode, BinaryOpNode
 

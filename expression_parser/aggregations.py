@@ -1,3 +1,7 @@
+"""
+This module provides functionality to apply aggregation functions to pandas Series
+"""
+
 import pandas as pd
 from expression_parser.exceptions import UnsupportedAggregationError
 

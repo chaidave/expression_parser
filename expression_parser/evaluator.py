@@ -1,3 +1,7 @@
+"""
+Evaluator for AST nodes against a pandas DataFrame.
+"""
+
 import pandas as pd
 from expression_parser.ast import ASTNode, ColumnRefNode, LiteralNode, BinaryOpNode, FunctionNode
 from expression_parser.exceptions import UnsupportedOperatorError

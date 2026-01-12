@@ -1,3 +1,7 @@
+"""
+Module to validate configuration dictionaries for data expression parsing
+"""
+
 from typing import Dict, Any, List
 
 # Import registries to validate against supported operations

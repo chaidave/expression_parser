@@ -1,3 +1,7 @@
+"""
+Module for applying filters to pandas DataFrames based on specified conditions.
+"""
+
 from expression_parser.exceptions import UnsupportedOperatorError
 
 FILTER_OPERATORS = {

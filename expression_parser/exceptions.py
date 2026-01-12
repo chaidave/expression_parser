@@ -1,3 +1,7 @@
+"""
+Exceptions for the expression parser module.
+"""
+
 class ExpressionParserError(Exception):
     """Base class for parser errors."""
 

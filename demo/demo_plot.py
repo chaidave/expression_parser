@@ -6,8 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 from expression_parser.parser import ExpressionParser
-from expression_parser import csv_validator
-
+from expression_parser.csv_validator import DataFrameValidator
 
 def load_synthetic_data():
     df = pd.DataFrame({
@@ -25,7 +24,8 @@ def load_csv_data(csv_path):
     try:
         df = pd.read_csv(csv_path)
         print(f"Loaded data from CSV: {csv_path}")
-        clean_df, report = csv_validator.clean_duplicates_and_missing(df)
+        csvValidator = DataFrameValidator()
+        csvValidator.validateDF(df)
         print(df.head(5))
         return df
     except FileNotFoundError:
